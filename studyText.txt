@@ -229,3 +229,16 @@ var number=[1,2,3,4]
 var values=number.reduce(function(prev,cur,index,array){
     return prev+cur
 })//10 求和 第一次迭代prev是number[0],cur=number[1],之后prev为上次操作返回的值
+
+2,Date--UTC,1970-01-01-00:00,毫秒数
+var now = new Date();
+
+Date.parse(日期)--返回日期毫秒数
+Date.parse参数:月/日/年(7/16/2017);January 12,2014;
+英文星期 英文月 日 年 时:分:秒 时区;2004-05-25T00:00:00.
+
+Date.UTC(日期)--返回日期毫秒数 参数:年,月(0开始),日,时,份,秒,毫秒数(年,月必须).
+
+var now=Date.now()//当前时间毫秒数 es5新增加属性 不支持的浏览器用 var now =+new Date()--返回毫秒数
+now.getFullYear--年(2018)  now.getMonth--月(0表示一月)
+getDate--日(1到31) getHours--时(超过23天加一) getMinutes--份(0-59) getSeconds--秒(0-59)
