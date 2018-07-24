@@ -316,3 +316,9 @@ function sayColor(){
 }
 var bindSay=sayColor.bind(o)
 bindSay()//必须调用新函数,apply和call在原函数基础直接调用.
+
+2018/07/24
+1.String类型:
+concat()--拼接成新字符串:var newVal=oldVal.concat(str1,str2,str3...)
+slice()/substr()/substring():接受一个或两个参数,第一个参数代表截取开始位置(从0开始),
+slice()/substring()第二个参数指截取结束位置(获取前一项),substr()第二个参数是截取长度.第二个参数没有就截取到元素末尾.
