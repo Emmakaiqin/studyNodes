@@ -253,4 +253,66 @@ var par=new RegExp("[qs]sd","i");--构造函数
 在字符串中元字符要双重转义 /\.at/=="\\.at"
 
 正则方法:匹配规则.exec(字符串))--返回匹配项,全局返回多个,非全局返回第一个;
-匹配规则.exec(字符串))--true/false
+匹配规则.test(字符串))--true/false
+
+2018/07/23
+1,Function--函数名实际也是一个指向函数对象的指针,不会与某个函数绑定.函数无重载.
+
+2,函数定义:
+    a,函数声明:function test(){} //解析器函数声明提升,即使函数声明在调用后也可正常运行.
+    b,函数表达式:var test=function(){};//末尾有分号;无函数名称,通过test变量引用函数.
+    c,Function构造函数:var test=new Function("num1","num2","return num1+num2")//接受任意数量参数,最后一个参数永远被看成函数体
+eg:
+function test(num1,num2){
+    return num1+num2;
+}
+test(10,10);//20
+var haha=test;//使用不带圆括号的函数名是访问函数指针,非调用函数.
+haha(5,5);//10
+
+function test(name){	
+	console.log(arguments)
+    return function(num1,num2){
+		console.log(arguments)
+        var val1=num1[name];
+        var val2=num2[name];
+		if(val1<val2){
+			return 1
+		}else if(val1>val2){
+			return -1
+		}else{return 0;}
+    }	
+}
+data.sort(test('age'));
+
+3,函数内部属性
+a,arguments--类数组对象,包含着传入函数中的所有参数.其callee属性是指针,指向拥有这个arguments对象的函数
+function factorial(num){//阶乘 
+	if(num<=1){
+		return 1
+	}else{
+		return num*arguments.callee(num-1);
+	}
+}
+b,this引用的是函数执行的对象.
+
+4,每个函数都包含两个属性:lenght--希望传递的参数个数,prototype--保存所有的实例方法,不可枚举,for-in无法发现.
+
+5,每个函数都包含两个非继承而来的方法:apply(),call().用途--在特定的作用域中调用函数,等于设置函数体内this对象的值.
+a,apply--参数1函数作用域,参数二参数数组(arguments或Array实例)
+function sum (num1,num2){
+	return num1+num2
+}
+function callSum1(num1,num2){
+	return sum.apply(this,arguments);//或return sum.apply(this,[num1,num2]);
+}
+b,call的区别在于接受参数必须逐个列出来.
+
+6,es5新增加属性--bind()
+var o={color:'blue'}
+window.color='red'
+function sayColor(){
+	console.log(this.color);
+}
+var bindSay=sayColor.bind(o)
+bindSay()//必须调用新函数,apply和call在原函数基础直接调用.

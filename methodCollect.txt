@@ -1,0 +1,37 @@
+1,打开App或者打开下载链接
+function isInIos(){//判断是否为IOS系统
+    var userAgentInfo = navigator.userAgent ,
+    Agents = ["iPhone" , "iPad", "iPod"];
+    for(var v = 0; v < Agents.length; v++){if(userAgentInfo.indexOf(Agents[v]) > 0){return true;}}
+    return false;
+}
+function isInWx(){//判断是否为微信浏览器
+    var agent = window.navigator.userAgent.toLowerCase();
+    return agent.match(/MicroMessenger/i) == 'micromessenger';
+}
+
+//启动APP
+window.startApp = function(){     //启动APP
+        if(isInIos()){//IOS系统，直接去itunes中，既可以下载也可以打开
+            //alert("尊敬的用户IOS版本即将上线！");
+            window.location= "url";
+        }else{//android系统，通过定时器的方式，判断是否安装有APP
+            if(isInWx()){     //微信中alert("请在浏览器中打开");
+                alert("请在非微信浏览器中打开该链接");
+            }else{     //非微信中
+                $("#model-loading").modal();
+                var hasApp = true , t = 1000;
+                var t1 = Date.now();
+                window.location= "***://***";
+                setTimeout(function(){//t的时间就是出发APP启动的时间，若APP启动了，再次返回页面时t2这行代码执行，hasApp即为true。反之若APP没有启动即为false
+                    var t2 = Date.now();
+                    hasApp = !(!t1 || t2 - t1 <t+150);
+                } , t);
+                setTimeout(function () {  //没有安装APP则跳转至官方下载，延时时间设置为2秒
+                    if(hasApp==false){
+                        window.location="url";
+                    };
+                } , 4000);
+            }
+       }
+ }
