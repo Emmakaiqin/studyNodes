@@ -319,6 +319,81 @@ bindSay()//必须调用新函数,apply和call在原函数基础直接调用.
 
 2018/07/24
 1.String类型:
-concat()--拼接成新字符串:var newVal=oldVal.concat(str1,str2,str3...)
+concat()--拼接成新字符串:var newVal=oldVal.concat(str1,str2,str3...)//直接+一样的作用
 slice()/substr()/substring():接受一个或两个参数,第一个参数代表截取开始位置(从0开始),
 slice()/substring()第二个参数指截取结束位置(获取前一项),substr()第二个参数是截取长度.第二个参数没有就截取到元素末尾.
+slice()/substr()第一个参数为负数长度与之相加,substr()第二个参数为负转换为0,slice()与第一个参数处理相同.
+substring()将负数转换为0,两个参数谁大以谁为第二个参数.
+
+2018/07/25
+1,获取字符串位置
+indexOf(要匹配的字符,[index])/lastIndexOf(要匹配的字符,[index]):搜索字符串出现位置(初始0),找到范hi索引位置,没找到返回-1,index不填默认为0.
+
+2,去掉字符串空格并返回副本.trim():去掉字符串前后空格,trimLeft()/trimRight()分别删除左右空格.
+
+3,大小写转换.toLowerCase()/toUpperCase()/toLocaleLowerCase()/toLocaleUpperCase().
+
+4,字符串的模式匹配:match(正则表达式/RegExp对象)--返回数组包含匹配项;search(正则表达式/RegExp对象)--始终从头匹配,返回第一个匹配项索引,没有返回-1.
+replace(正则表达式/RegExp对象/字符串,替换为的字符串/函数).
+
+5,localeCompare():比较两个字符串,大于返回正数,小于返回负数,等于返回0.
+var str1='yello',str2='blue';str1.localeCompare(str2)//正数
+
+6,Math:var num=Math.floor(Math.random()*10+1)//1到10之间的随机整数
+Math.floor()//向下取整 ; Math.ceil()//向上取整 ; Math.round()//四舍五入.
+var val=[1,46,7,82,17,83,7,8,21,32]
+var max=Math.max.apply(Math,val)//取最大值
+
+7,对象:属性和方法
+a,属性含有特征值,ECMAScript中有两中属性:数据属性和访问器属性.
+b,数据属性包含一个数据值得位置.在这个位置可以读值和写入值.其包含四儿猫叔行为的特性:
+[[Conficurable]]:能否delete删除属性从而定义新属性,能否修改属性特性,能否把属性修改为访问器属性.默认true.
+[[Enumerable]]:能否通过for-in循环返回属性.默认true.
+[[Writable]]:能否修改属性的值.默认true.
+[[Value]]:包含属性的数据值.默认undefined.
+Object.defineProperty(属性所在对象,属性名,描述符对象(conficurable/enumerable/writable/value)):修改属性的默认特性.
+//如果定义了conficurable为false,则出writable外其他属性不可修改,writable不可设置为true.
+var per={}
+Object.defineProperty(per,'name',{//如果定义了未指定的属性则conficurable/enumerable/writable未定义都为false,定义了的话无限制
+    writable:false,
+    value:'emma'
+});
+per.name;//emma
+c,访问器属性:必须使用Object.defineProperty()定义.
+[[Conficurable]]:能否delete删除属性从而定义新属性,能否修改属性特性,能否把属性修改为访问器属性.默认true.
+[[Enumerable]]:能否通过for-in循环返回属性.默认true.
+[[Get]]:读属性,默认undefined;[[Set]]]:写属性,,默认undefined.
+d,Object.defineProperty(属性所在对象,{属性名:{数据属性/访问器属性}...})//批量定义多个.es5新增加属性.
+e,Object.getOwnPropertyDescriptor(属性所在对象,'属性名字')//返回属性特征对象.
+
+8,工厂模式创建对象:可以创建多个对象,但是没办法值到一个对象的类型.
+function creatObj(name,age,job){
+    var o=new Object();
+    o.name=name;
+    o.age=age;
+    o.job=job;
+    o.sayJob=function(){
+        alert(this.job)
+    }
+    return o;
+}
+var per1=creatObj('emma',12,'hah1');var per2=creatObj('emma123123',22,'hah1122').
+
+9,构造函数模式
+function Per(name,age,job){//构造函数名大写,无显示创建对象,无return语句.含有constructor属性
+    this.name=name;
+    this.age=age;
+    this.job=job;
+}
+var per1=new Per('emma',12,'hah1');var per2=new Per('emma12',1212,'hah2132131');//含有constructor属性,等于Per.
+
+10,原型模式:prototype
+isPrototypeOf(),hasOwnPrototy()--只能用于对象的实例.
+for...in...:不可枚举属性不返回在循环中.//Object.keys();
+实例中的指针指向原型,不是指向构造函数.
+
+11,原型链:原型链作为继承的主要方法,其基本思想是利用原型让一个原型继承另一个引用类型的属性和方法.
+
+
+
+
