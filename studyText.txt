@@ -394,7 +394,100 @@ for...in...:不可枚举属性不返回在循环中.//Object.keys();
 
 11,原型链:原型链作为继承的主要方法,其基本思想是利用原型让一个原型继承另一个引用类型的属性和方法.
 
+2018/07/25
+1,instanceof:判断一个实例是否属于某种类型.
 
+函数表达式
+1,定义函数方式:函数声明,函数表达式.
+function test(){//函数体}//函数声明;--函数声明提升.
+var test=function(){//函数体}//函数表达式.
+
+2,闭包
+function creat(){
+	var res=new Array();
+	for(var i=0;i<10;i++){
+		res[i]=function(num){
+			console.log(i,num);//10 5
+			return function(){
+				return num;
+			}
+		}
+	}
+	return res;
+}
+creat()[0](5);//5  console.log(i,num);//10 5
+
+function creat(){
+	var res=new Array();
+	for(var i=0;i<10;i++){
+		res[i]=function(num){
+			console.log('step1',i,num);
+			return function(){
+				console.log('step2',i,num);
+				return num;
+			};
+		}(i);//^__^
+	}
+	return res;
+}
+
+function creat(){
+	var res=new Array();
+	for(var i=0;i<10;i++){
+		res[i]=function(num){
+			return num;
+		}(i);//函数参数是按值传递的,所以将i的当前值传递给num.
+	}
+	return res;
+}
+creat()//[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+function creat(){
+	var res=new Array();
+	for(var i=0;i<10;i++){
+		res[i]=function(){
+			return i;
+		}();
+	}
+	return res;
+}
+creat()//[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+function creat(){
+	var res=new Array();
+	for(var i=0;i<10;i++){
+		res[i]=function(){
+			return i;
+		};
+	}
+	return res;
+}
+creat()[0]();//10
+
+2,匿名函数的执行环境具有全局性,因此this对象通常指向window.
+
+var name='one';
+var obj={
+	name:'two',
+	getName:function(){
+		return function(){//匿名函数只能找到其活动对象为止,找不到使用全局.
+			return this.name
+		}
+	}
+}
+obj.getName()()//one
+var obj={
+	name:'two',
+	getName:function(){
+		return this.name
+	}
+}
+obj.getName()//two
+
+3,模仿块级作用域.
+(function(){//块级作用域})()//用作块级作用域的匿名函数
+function(){//块级作用域}()--报错,因为js将function当做函数声明的开始,函数后面不能跟圆括号,函数表达式后面可以,加括号给函数声明变为函数表达式.
 
 
 
