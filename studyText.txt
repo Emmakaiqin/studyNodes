@@ -489,5 +489,28 @@ obj.getName()//two
 (function(){//块级作用域})()//用作块级作用域的匿名函数
 function(){//块级作用域}()--报错,因为js将function当做函数声明的开始,函数后面不能跟圆括号,函数表达式后面可以,加括号给函数声明变为函数表达式.
 
+2018/07/2
+1,函数声明只能创建局部函数.
+
+2,BOM:浏览器对象模型,BOM提供了很多对象,用于访问浏览器的功能,这些功能与任何网页无关.
+
+3,window对象:BOM的核心对象是window,它表示浏览器的一个实例.在浏览器中,它是通过js访问浏览窗口的一个接口,
+也是ESMAScript规定的Global.在网页中的的任何对象,变量,和函数,都以window作为其Global对象.因此全局作用域中声明的变量/函数都会变成window对象的属性和方法.
+
+4,定义全局变量与window上直接定义属性:定义全局变量不可delete删除,window上可以.var添加的属性[[Conficurable]]为false.
 
 
+5,移动设备:window.innerHeight()/window.innerWidth()--浏览器可视区域宽高;
+移动IE浏览器不支持,可用document.documentElement.clientWidth/document.documentElement.clientHeight,
+移动IE的布局视口保存在document.body.clientWidth/document.body.clientHeight,其他移动浏览器document.documentElement.clientWidth/document.documentElement.clientHeight为页面布局宽高.
+
+6,系统对话框(alert,confirm,prompt):与浏览器显示的网页无关,不包含html,由系统决定样式,css无法改变.显示对话框时代码停止执行,关掉对话框代码恢复执行.
+
+7,location:最有用的BOM对象之一.它既是window的属性,也是document的属性.window.location和document.location是同一个对象.
+window.location/location.href都可以实现页面跳转.location.replace()--不会生成历史记录.
+location.reload()//可能从缓存中重新加载;location.reload(true)//从服务器重新加载.
+
+8,navigator:navigator.userAgent//浏览器用户代理字符串.
+navigator.plugins:检测插件;//IE无效;
+
+9,screen,history对象.
