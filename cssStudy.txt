@@ -1,0 +1,14 @@
+1,box-sizing
+*{	
+	box-sizing:border-box;
+	box-sizing: border-box;
+	//浏览器厂商已移除 -webkit 前缀
+	//width = border + padding + 内容的  width，
+	//height = border + padding + 内容的 height。
+}
+initial:默认值;
+inherit:从父元素继承 box-sizing 属性的值。
+content-box:width = 内容的宽度，height = 内容的高度。
+padding-box:width 和 height 属性包括内容和内边距，但是不包括边框和外边距。只有Firefox实现了这个值，它在Firefox 50中被删除。
+unset:如果该属性是默认继承属性，该值等同于 inherit;如果该属性是非继承属性，该值等同于 initial.
+
