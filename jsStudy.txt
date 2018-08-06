@@ -519,3 +519,22 @@ location.reload()//可能从缓存中重新加载;location.reload(true)//从服�
 navigator.plugins:检测插件;//IE无效;
 
 9,screen,history对象.
+
+2018/08/03
+1,Array.prototype.slice.call(对象,0)--转换为数组 ie8之前无效.
+
+2,DOM:Node节点
+
+查找节点:
+nodeType/nodeValue/nodeName/childNodes/parentNode/
+firstChild/lastChild/nextSibling/previousSiling
+
+操作节点:appendChild()--childNodes末尾添加元素,返回新增的节点,如果添加节点已经是文档一部分,那就移动元素位置到新位置.
+insertBefore(newEle,参照Node)--参照Node为null等于appendChide,结果类似appendChild.
+removeChild(removeNode)--移除节点不在文档中了,返回移除节点.
+replaceChild(newnode,befChild)--替换节点,befChild所有指针被newnode复制过来,befChild依然在文档中,但是没有位置.
+cloneNode(boolean):true--深度复制,复制节点及后代;false--不复制后代.该方法不复制JavaScript属性(IE存在bug会复制事件处理程序).
+normalize():文本节点操作,子节点有空节点删除,接连出现多个文本节点合并为一个.
+
+3,Document类型:js通过Document类型表示文档.
+浏览器中,document对象是HTMLDocument(继承自Document)的一个实例,表示整个html页面.
