@@ -537,4 +537,33 @@ cloneNode(boolean):true--深度复制,复制节点及后代;false--不复制后�
 normalize():文本节点操作,子节点有空节点删除,接连出现多个文本节点合并为一个.
 
 3,Document类型:js通过Document类型表示文档.
-浏览器中,document对象是HTMLDocument(继承自Document)的一个实例,表示整个html页面.
+浏览器中,document对象是HTMLDocument(继承自Document)的一个实例,表示整个html页面.document对象是window对象的一个属性,因此可以将其作为全局对象来访问.
+
+2018/8/6
+1,document
+document.documentElement--html;document.body--body;
+document.title--title;document.URL--url;document.domain--domain;document.referrer--referrer;
+
+查找元素:
+document.getElementById(),document.getElementsByTagName(),docuemnet.images(),document.links().
+
+取得特性:
+getAttribute(),setAttribute(),removeAttribute().
+
+创建元素:
+document.creatElement('标签名:不区分大小写').
+
+文本节点:Text类型类似Element.需要了解.
+
+动态添加脚本(添加css类似)
+var script=document.creatElement('script');
+script.type='text/javascript';
+script.src='url';
+docuemnet.body.append(script);
+
+2,DOM扩展.
+querySelector()--返回第一个元素,querySelectorAll()--返回所有元素.
+
+3,html5 DOM扩展:
+getElementsByClassName();
+
