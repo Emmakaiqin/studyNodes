@@ -567,3 +567,35 @@ querySelector()--返回第一个元素,querySelectorAll()--返回所有元素.
 3,html5 DOM扩展:
 getElementsByClassName();
 
+2018/08/07
+html5:
+1,arr.trim().split(/\s+\);//字符串空格分割数组.
+
+2,焦点管理:tag.focus()--使元素获得焦点;tag.hasFocus()--true/false;
+
+3,自定义数据属性:添加前缀 data-,dataset设置或访问自定义属性.
+
+4,IE8引入文档模式:<meta http-equive="X-UA-Compatible" content="IE=IEVersion">.
+
+5,children;tag.contains(childTag)是否包含某个子节点.
+
+js访问css
+1,float:ie--styleFloat,其他cssFloat.
+tag.style.cssName--js访问css属性.
+
+事件:文档或浏览器窗口中发生的一些特定的交互瞬间.javascript与html之间的交互是通过事件实现的.
+IE事件流:事件冒泡;
+Netscapt Communicator事件流:事件捕获;
+DOM事件流:事件捕获阶段--处于目标阶段--事件冒泡阶段.IE9及其他浏览器支持.
+
+事件处理程序(事件侦听器):响应某个事件的函数.以on开头(onclick,onload,onmouserover等).
+事件--用户或浏览器自身执行的某种动作;click,load,mouserover等为事件名字.
+
+1,btn.onclick=function(){}:通过js指定事件处理程序,函数赋值给事件处理程序属性.
+this指向元素本身,包含event局部变量(即事件对象).
+btn.onclick=null;置空.
+
+2,两个方法:addEventListener(),removeEventListener().
+btn.addEventListener('click',function(){},false);//false--在冒泡阶段调用事件处理程序,true--在捕获阶段调用事件处理程序.
+
+
