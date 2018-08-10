@@ -598,4 +598,46 @@ btn.onclick=null;置空.
 2,两个方法:addEventListener(),removeEventListener().
 btn.addEventListener('click',function(){},false);//false--在冒泡阶段调用事件处理程序,true--在捕获阶段调用事件处理程序.
 
+var handle=function(){...}
+btn.addEventListener('click',handle,false);
+btn.removeEventListener('click',handle,false);--取消监听
+
+2018/08/09
+1,UI事件:load,unload,abort,error,select,resize,scroll.
+
+2,event.clientX,event.clientY--相对于视口的位置;
+  event.pageX,event.pageY--相对于页面的位置;
+  event.pageX=event.clientX+event.scrollTop.
+  event.pageY=event.clientY+event.scrollLeft.
+  screenX,screenY--相对于屏幕的位置.
+
+3,textInput事件:只会在用户按下能够输入实际字符的键时才触发.
+
+4,变动事件:
+DOM2:(MutationEvents)
+DOMSubtreeModified:DOM结构发生任何变化;
+DOMNodeInsereted:插入子节点;
+DOMNodeInseretedIntoDocument:DOMNodeInsereted后触发;
+DOMNodeRemoved:子节点被移除;
+DOMNodeRemovedFromDocument:DOMNodeRemoved后触发;
+DOMAttrModified:DOM特性被修改;
+DOMCharacterDataModified:文本节点值发生变化.
+
+5,hashchange:当URL的片段标识符更改时，将触发hashchange事件 (跟在＃符号后面的URL部分，包括＃符号)
+
+6,touch事件:
+touchstart:触摸屏幕;
+touchmove:手指在屏幕上滑动;
+touchend:手指从屏幕移开;
+touchcancel:系统停止跟踪触摸;
+触摸属性:
+touches:当前触摸的Touch对象的数组;
+changeTouches:上次触摸发生改变的Touch对象的数组;
+targetTouches:特定于事件目标的Touch对象的数组;
+
+7,手势事件:gusturestart,gustureend,gusturechange.
+
+8,事件委托;
+
+
 
