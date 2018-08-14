@@ -639,5 +639,9 @@ targetTouches:特定于事件目标的Touch对象的数组;
 
 8,事件委托;
 
+2018/08/13
+1,input:change事件--input,textarea,在他们失去焦点且value值改变时触发;select改变选项是触发.
+
+2,
 
 
