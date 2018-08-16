@@ -642,6 +642,11 @@ targetTouches:特定于事件目标的Touch对象的数组;
 2018/08/13
 1,input:change事件--input,textarea,在他们失去焦点且value值改变时触发;select改变选项是触发.
 
-2,
-
+2018/08/16
+html5拖放事件:
+拖动某元素:dragstart/drag/dragend;
+元素拖动到某个可放置目标:dragenter(拖进),
+dragover(可放置目标内拖放),dragleave(离开可放置目标),drop(开可放置目标内放开鼠标).
+放置拖放释放鼠标页面转向目标图片的url,阻止默认事件(drop阶段:e.preventdefault(),e.stoppropagation()).
+draggable='true'===元素可拖动.
 
