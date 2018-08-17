@@ -650,3 +650,23 @@ dragover(可放置目标内拖放),dragleave(离开可放置目标),drop(开可�
 放置拖放释放鼠标页面转向目标图片的url,阻止默认事件(drop阶段:e.preventdefault(),e.stoppropagation()).
 draggable='true'===元素可拖动.
 
+2018/08/17
+1,错误处理:在遇到throw操作符时,代码会立即停止执行.仅当有try-catch语句捕获到被抛出的值时,代码才继续.
+
+2,检测类型:基本数据用typeof,对象用instanceof.
+
+3,JSON:简单值(不能表示undefined),数组,对象.JSON字符串必须用双引号.JSON对象和数组没有变量和分号.
+JSON对象:stringify()--js对象序列化为json字符串,parse()--json字符串转化为js对应类型值.
+
+4,Ajax技术核心XMLHttpRequest(简称XHR).
+var xhr=new XMLHttpRequest();
+xhr.onreadystatechange=function(){//必须在open前指定onreadystatechange
+	if(xhr.raadyState==4){raadyState:0,未初始化;1:启动,调用open,未调用send;2:发送,调用send,无响应;4:完成.
+		if(xhr.status(200,304,400,500...)){
+
+		}
+	}
+}
+xhr.open('get/post','请求url','异步请求:true/false');//url:同一个域中使用相同端口号和协议.
+xhr.send(get:null/post:数据);
+xhr:返回:responseText,responseXML,status,statusText.
