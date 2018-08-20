@@ -1,3 +1,4 @@
+-------------------------------------------------------
 1,打开App或者打开下载链接
 function isInIos(){//判断是否为IOS系统
     var userAgentInfo = navigator.userAgent ,
@@ -35,3 +36,34 @@ window.startApp = function(){     //启动APP
             }
        }
  }
+-------------------------------------------------------
+
+
+
+
+-------------------------------------------------------
+2,版本号比较
+function versionCompare(a, b){//比较版本号 版本号a>=b
+    let result;
+    var pre = a.split('.')
+    var after = b.split('.')
+    //let len = pre.length > after.length ? pre.length : after.length
+    //let len = Math.max(pre.length - 1, after.length - 1)
+    for(let i = 0; i < len ; i++ ){
+        let preInt = parseInt(pre[i]) || 0
+        let afterInt = parseInt(after[i]) || 0
+        if(preInt > afterInt){
+            result = 1
+            break
+        }else if(preInt < afterInt){
+            result = -1
+            break
+        }else{
+            if(i == len-1){
+                result = 0
+            }
+        }
+    }
+    return result >= 0
+}
+-------------------------------------------------------
