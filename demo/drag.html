@@ -1,0 +1,110 @@
+<!-- ondrag:原生js实现拖拽替换位置 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>demo</title>
+    <style>
+        .item{
+            width:300px;
+            overflow: hidden;
+            border:1px solid #e0e0e0;
+            margin-bottom:20px;
+            display:flex;
+            align-items:center;
+        }
+        .item>img{
+            width:50px;
+            height:50px;
+            padding:10px;
+        }
+        .over {
+            border:1px dashed red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" >
+        <section class="item" draggable="true" >
+            <span>1</span>
+            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534742856690&di=4f029599205086908d20a5a1201581b0&imgtype=0&src=http%3A%2F%2Ftu.simei8.com%3A7788%2Fpic141%2F14145-9.jpg">
+            <a href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534742856690&di=4f029599205086908d20a5a1201581b0&imgtype=0&src=http%3A%2F%2Ftu.simei8.com%3A7788%2Fpic141%2F14145-9.jpg">玩儿听是哦见红崔表周年</a>
+        </section>
+        <section class="item" draggable="true">
+            <span>2</span>
+            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534743018363&di=7dbcf66cfc35a2ee61b998c995e9f04a&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fwallpaper%2F1211%2F08%2Fc0%2F15462425_1352355028555.jpg">
+            <a href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534743018363&di=7dbcf66cfc35a2ee61b998c995e9f04a&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fwallpaper%2F1211%2F08%2Fc0%2F15462425_1352355028555.jpg">dadasdasdasdasdqwewrq</a>
+        </section>
+        <section class="item" draggable="true">
+            <span>3</span>
+            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534743018363&di=7dbcf66cfc35a2ee61b998c995e9f04a&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fwallpaper%2F1211%2F08%2Fc0%2F15462425_1352355028555.jpg">
+            <a href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534743018363&di=7dbcf66cfc35a2ee61b998c995e9f04a&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fwallpaper%2F1211%2F08%2Fc0%2F15462425_1352355028555.jpg">dadasdasdasdasdqwewrq</a>
+        </section>
+        <section class="item" draggable="true">
+            <span>4</span>
+            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534743018363&di=7dbcf66cfc35a2ee61b998c995e9f04a&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fwallpaper%2F1211%2F08%2Fc0%2F15462425_1352355028555.jpg">
+            <a href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534743018363&di=7dbcf66cfc35a2ee61b998c995e9f04a&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fwallpaper%2F1211%2F08%2Fc0%2F15462425_1352355028555.jpg">dadasdasdasdasdqwewrq</a>
+        </section>
+    </div>
+</body>
+<script>
+    window.onload=function(){
+        var dragEl = null;
+        var columns = document.querySelectorAll('.item');
+        [].forEach.call(columns,function(column){
+            column.addEventListener("dragstart",domdrugstart,false);
+            column.addEventListener('dragenter', domdrugenter, false);
+            column.addEventListener('dragover', domdrugover, false);
+            column.addEventListener('dragleave', domdrugleave, false);
+            column.addEventListener('drop', domdrop, false);
+            column.addEventListener('dragend', domdrapend, false); 
+        });
+        function domdrugstart(e) {
+            console.log('drugstart',e.target);
+            e.target.style.opacity = '0.5';
+            dragEl = this;
+            e.dataTransfer.effectAllowed = "move";//是用来限制元素的,它限制了元素的拖动类型为move.
+            e.dataTransfer.setData("text/html",this.innerHTML);
+        }
+        function domdrugenter(e) {
+            console.log('drugenter',e.target);
+            e.target.classList.add('over');
+        }
+        function domdrugover(e) {
+            console.log('drugover',e.target);
+            if (e.preventDefault) {
+                e.preventDefault(); 
+            }
+            e.dataTransfer.dropEffect = 'move';
+            return false;
+        }
+        function domdrugleave(e) {
+            console.log('drugleave',e.target);
+            e.target.classList.remove('over'); 
+        } 
+        function domdrop(e) {
+            console.log('drop',e.target);
+            if (e.stopPropagation) {
+                e.stopPropagation();
+            }
+            e.target.classList.remove('over');
+            dragEl.classList.remove('over');
+            if (dragEl != this) {
+                dragEl.innerHTML = this.innerHTML;
+                this.innerHTML = e.dataTransfer.getData('text/html');
+            }   
+            return false;
+        }
+        function domdrapend(e) {
+            console.log('drapend',e.target);
+            e.target.classList.remove('over');
+            [].forEach.call(columns, function (column) {
+                column.classList.remove('over');
+                column.style.opacity = '1';
+            });
+        } 
+    }
+
+</script>
+</html>
