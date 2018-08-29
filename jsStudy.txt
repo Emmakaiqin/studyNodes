@@ -304,6 +304,7 @@ b,this引用的是函数执行的对象.
 4,每个函数都包含两个属性:lenght--希望传递的参数个数,prototype--保存所有的实例方法,不可枚举,for-in无法发现.
 
 5,每个函数都包含两个非继承而来的方法:apply(),call().用途--在特定的作用域中调用函数,等于设置函数体内this对象的值.
+call/apply的第一个参数如果为null。this指向window
 a,apply--参数1函数作用域,参数二参数数组(arguments或Array实例)
 function sum (num1,num2){
 	return num1+num2
